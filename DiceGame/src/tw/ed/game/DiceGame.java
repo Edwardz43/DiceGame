@@ -37,20 +37,9 @@ public class DiceGame extends JPanel{
 			Player p = players[gameStage-1];
 			p.throwDice();
 			if(p.scores() == 0){
-				StringBuffer sb = new StringBuffer();
-				for(int i : p.showResult()){
-					sb.append(i + " ");
-				}
-				System.out.println(gameStage+" : " + sb);
-				System.out.println("Throw again!");
+				throwDice.setText("BG...Throw again !");
 			}else{
-				StringBuffer sb = new StringBuffer();
-				for(int i : p.showResult()){
-					sb.append(i + " ");
-				}
-				System.out.println(gameStage+" : " + sb);
 				rank.add(p.scores());
-				
 				if(gameStage == 4){
 					HashMap<Integer, String> temp = new HashMap<>();
 					for(int i : rank){
@@ -70,6 +59,7 @@ public class DiceGame extends JPanel{
 				if(gameStage == 0) {
 					throwDice.setText(
 							(winner==0)?"Tied...Try again !":"Winner is : Player" + winner);
+					start.setText("One More Game");
 					isOver = true;
 					System.out.println("isOver :" +isOver);
 				} 
@@ -87,6 +77,7 @@ public class DiceGame extends JPanel{
 			for(int i = 0; i < 4; i++){ players[i] = new Player(i); }
 			rank.clear();
 			gameStage = 1;
+			start.setText("開始遊戲");
 			throwDice.setText("玩家"+ gameStage);
 			repaint();
 		}
